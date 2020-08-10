@@ -38,7 +38,6 @@ let
 in reportDeployment (rec {
 
   withMonitoring = false;
-  withLegacyExplorer = false;
 
   environmentName = "bench-txgen-simple-${benchmarkingProfileName}";
   sourcesJsonOverride = ./nix/sources.bench-txgen-simple.json;
@@ -48,7 +47,6 @@ in reportDeployment (rec {
 
     relays = "relays.${pkgs.globals.domain}";
     edgePort = pkgs.globals.cardanoNodePort;
-    confKey = abort "legacy nodes not supported by benchmarking environment";
     genesisFile = ./keys/genesis.json;
     genesisHash = builtins.replaceStrings ["\n"] [""] (builtins.readFile ./keys/GENHASH);
     private = true;
